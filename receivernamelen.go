@@ -24,14 +24,20 @@ func run(pass *analysis.Pass) (any, error) {
 	insp := pass.ResultOf[inspect.Analyzer].(*inspector.Inspector)
 
 	nodeFilter := []ast.Node{
-		(*ast.Ident)(nil),
+		(*ast.FuncDecl)(nil),
 	}
 
 	insp.Preorder(nodeFilter, func(n ast.Node) {
 		switch n := n.(type) {
-		case *ast.Ident:
-			if n.Name == "gopher" {
-				pass.Reportf(n.Pos(), "identifier is gopher")
+		case *ast.FuncDecl:
+			if n.Recv != nil {
+				for _, field := range n.Recv.List {
+					for _, name := range field.Names {
+						if len([]rune(name.String())) >= 3 {
+							pass.Reportf(name.Pos(), "receiver variable names must be one or two characters in length")
+						}
+					}
+				}
 			}
 		}
 	})
