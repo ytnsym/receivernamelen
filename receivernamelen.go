@@ -34,7 +34,7 @@ func run(pass *analysis.Pass) (any, error) {
 				for _, field := range n.Recv.List {
 					for _, name := range field.Names {
 						if len([]rune(name.String())) >= 3 {
-							pass.Reportf(name.Pos(), "receiver variable names must be one or two characters in length")
+							pass.Reportf(name.Pos(), "receiver variable names must be one or two letters in length")
 						}
 					}
 				}
