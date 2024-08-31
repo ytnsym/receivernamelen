@@ -8,9 +8,9 @@ import (
 	"golang.org/x/tools/go/ast/inspector"
 )
 
-const doc = "receivernamelen is ..."
+const doc = "receivernamelen checks the length of the receiver variable names"
 
-// Analyzer is ...
+// Analyzer is receivernamelen analyzer
 var Analyzer = &analysis.Analyzer{
 	Name: "receivernamelen",
 	Doc:  doc,
