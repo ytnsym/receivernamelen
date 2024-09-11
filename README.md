@@ -4,11 +4,10 @@
 
 ## Install
 ```sh
-$ go install github.com/ytnsym/receivernamelen/cmd/receivernamelen
+go install github.com/ytnsym/receivernamelen/cmd/receivernamelen@latest
 ```
 
 ## Usage
 ```sh
-$ go vet -vettool=$(which receivernamelen) ./...
-./main.go:11:7: receiver variable names must be one or two letters in length
+go vet -vettool=$(which receivernamelen) ./...
 ```
